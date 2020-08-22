@@ -19,20 +19,18 @@ const assertArrayEqual = (arrA, arrB) => {
   }
 };
 
-const flatten = (arr) => {
-  let flattenedArr = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      for (let j = 0; j < arr[i].length; j++) {
-        flattenedArr.push(arr[i][j]);
-      }
-    } else {
-      flattenedArr.push(arr[i]);
-    }
+const middle = (arr) => {
+  if (arr.length % 2 !== 0) {
+    return [arr[Math.ceil(arr.length * 0.5 - 1)]];
+  } else {
+    return [
+      arr[Math.ceil(arr.length * 0.5 - 1)],
+      arr[Math.ceil(arr.length * 0.5)],
+    ];
   }
-  return flattenedArr;
 };
 
-assertArrayEqual(flatten([1, 2, [3, 4], 5, [6]]), [1, 2, 3, 4, 5, 6]);
-assertArrayEqual(flatten([[4, 7, 1], 2, [9, 0]]), [4, 7, 1, 2, 9, 0]);
+assertArrayEqual(middle([1, 2, 3]), [2]);
+assertArrayEqual(middle([1, 2, 3, 4, 5]), [3]);
+assertArrayEqual(middle([1, 2, 3, 4]), [2, 3]);
+assertArrayEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]);
